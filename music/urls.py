@@ -7,6 +7,9 @@ urlpatterns = [
     # /music/
     path('', views.index, name='index'),
     
-    # /music/72/ adding re_path for regular expression
-    re_path(r'^(?P<album_id>[0-9]+)/$', views.detail, name='detail')
+    # /music/<album_id>/ adding re_path for regular expression
+    re_path(r'^(?P<album_id>[0-9]+)/$', views.detail, name='detail'),
+    
+    # /music/<album_id>/favorite/
+    re_path(r'^(?P<album_id>[0-9]+)/favorite/$', views.favorite, name='favorite'),
 ]
