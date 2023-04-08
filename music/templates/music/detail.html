@@ -1,30 +1,35 @@
-<img src="{{ album.alum_logo }}">
+{% extends 'music/base.html' %}
+{% block title %}Detail Page{% endblock title %}
+{% block body %}
 
-<h1>{{ album.alum_title }} </h1>
-<h3>{{album.artist }} </h3>
+    <img src="{{ album.alum_logo }}">
 
-{% comment %} <ul>
-    {% for song in album.song_set.all   %}
-         <li>
-            {{ song.song_title }} - {{ song.file_type }}
-         </li> 
-    {% endfor %}
-</ul> {% endcomment %}
+    <h1>{{ album.alum_title }} </h1>
+    <h3>{{album.artist }} </h3>
 
-{% if error_message %}
-    <p><strong>{{ error_message }}</strong></p>
-{% endif %}
+    {% comment %} <ul>
+        {% for song in album.song_set.all   %}
+            <li>
+                {{ song.song_title }} - {{ song.file_type }}
+            </li> 
+        {% endfor %}
+    </ul> {% endcomment %}
 
-<form action="{% url 'music:favorite' album.id %}" method="post">
-    {% csrf_token %}
-    {% for song in album.song_set.all  %}
-        <input type="radio" id="song{{forloop.counter}}" name="song" value="{{song.id}}" />
-        <label for="song{{forloop.counter}}">
-            {{song.song_title}}
-            {% if song.is_favorite %}
-                <img src='http://clipart-library.com/images/qTBAkEKzc.png'/>
-            {% endif %}
-        </label><br>
-    {% endfor %}
-    <input type='submit' value='Favorite'>
-</form>
+    {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+
+    <form action="{% url 'music:favorite' album.id %}" method="post">
+        {% csrf_token %}
+        {% for song in album.song_set.all  %}
+            <input type="radio" id="song{{forloop.counter}}" name="song" value="{{song.id}}" />
+            <label for="song{{forloop.counter}}">
+                {{song.song_title}}
+                {% if song.is_favorite %}
+                    <img src='http://clipart-library.com/images/qTBAkEKzc.png'/>
+                {% endif %}
+            </label><br>
+        {% endfor %}
+        <input type='submit' value='Favorite'>
+    </form>
+{% endblock body %}

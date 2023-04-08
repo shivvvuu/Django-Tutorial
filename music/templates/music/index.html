@@ -1,89 +1,19 @@
-<!-- Load the path to your static files -->
-
-{% load static %}
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/feather-icons"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Satisfy">
-<link rel="stylesheet" href="{% static 'style.css' %}">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-{% comment %} <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <div class="container-fluid">
-        <!--  Logo -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggler" data-toggle="collapse"  data-target ="#topNavBar">
-                <spna class="icon-bar"></span>
-                <spna class="icon-bar"></span>
-                <spna class="icon-bar"></span>
-            </button>
-
-            
-            <a class="navbar-brand" href="{% url 'music:index' %}">Viberr</a>
-        </div>
-    </div>
-</nav> {% endcomment %}
-   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-        <div class="container-fluid">
-        <a class="navbar-brand"  href="{% url 'music:index' %}">Viberr</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <a class='active' href="{% url 'music:index' %}">
-                        <span class="glyphicon glyphicon-cd"></span>&nbsp;<!--adding space by &nbsp--> Albums
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-music"></span>&nbsp;<!--adding space by &nbsp--> Songs
-                    </a>
-                </li>
-                
-        </ul>
-
-        <form class="navbar-form navbar-left" role="search" method="get" action="#">
-            <div class="form-group">
-                <input class="form-control " type="text" placeholder="Search"  name="q" value="">
-            </div>
-            <button class="btn btn-default" type="submit">Search</button>
-        </form>
-
-        <ul class="nav navbar-nav navbar-right">
-            <li class="">
-                <a href="#">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Album
-                </a>
-            </li>
-            <li class="">
-                <a href="#">
-                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Log Out
-                </a>
-            </li>
-        </ul>
-
-      </div>
-    </div>
-  </nav> 
-
-  
-
+{% extends 'music/base.html' %}
+{% block title %}Albums{% endblock title %}
+{% block body %}
     {% if all_album %}
-    <h3>Here are all my Albums<br/></h3>
-    <ul>
-        <li>
-            {% for album in all_album %}
-            <!--detail is the name or path removing hardcore url // music:detail-->
-            <a href="{% url 'music:detail' album.id %}"> 
-                {{album.alum_title}}<br/>
-            </a>
-            {% endfor %}
-        </li>
-    </ul>
-    {% else %}
-    <h3>You don't have any Albums</h3>
-    {% endif %}
+        <h3>Here are all my Albums<br/></h3>
+        <ul>
+            <li>
+                {% for album in all_album %}
+                <!--detail is the name or path removing hardcore url // music:detail-->
+                <a href="{% url 'music:detail' album.id %}"> 
+                    {{album.alum_title}}<br/>
+                </a>
+                {% endfor %}
+            </li>
+        </ul>
+        {% else %}
+        <h3>You don't have any Albums</h3>
+        {% endif %}
+{% endblock body %}
