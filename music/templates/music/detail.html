@@ -6,6 +6,11 @@
 
     <h1>{{ album.alum_title }} </h1>
     <h3>{{album.artist }} </h3>
+    {% for song in album.song_set.all  %}
+    <label for="song{{forloop.counter}}">
+        {{song.song_title}}
+    </label><br>
+{% endfor %}
 
     {% comment %} <ul>
         {% for song in album.song_set.all   %}
@@ -15,7 +20,7 @@
         {% endfor %}
     </ul> {% endcomment %}
 
-    {% if error_message %}
+    {% comment %} {% if error_message %}
         <p><strong>{{ error_message }}</strong></p>
     {% endif %}
 
@@ -31,5 +36,5 @@
             </label><br>
         {% endfor %}
         <input type='submit' value='Favorite'>
-    </form>
+    </form> {% endcomment %}
 {% endblock body %}

@@ -5,11 +5,11 @@ app_name = 'music'  # It's the name of the app diff app have diff name and for e
 
 urlpatterns = [
     # /music/
-    path('', views.index, name='index'),
+    path('', views.IndexView.as_view(), name='index'),
     
     # /music/<album_id>/ adding re_path for regular expression
-    re_path(r'^(?P<album_id>[0-9]+)/$', views.detail, name='detail'),
+    re_path(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
     
     # /music/<album_id>/favorite/
-    re_path(r'^(?P<album_id>[0-9]+)/favorite/$', views.favorite, name='favorite'),
+    #re_path(r'^(?P<album_id>[0-9]+)/favorite/$', views.favorite, name='favorite'),
 ]

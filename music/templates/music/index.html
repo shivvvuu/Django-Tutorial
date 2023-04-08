@@ -1,11 +1,11 @@
 {% extends 'music/base.html' %}
 {% block title %}Albums{% endblock title %}
 {% block body %}
-    {% if all_album %}
+    {% if object_list %}
         <h3>Here are all my Albums<br/></h3>
         <ul>
             <li>
-                {% for album in all_album %}
+                {% for album in object_list %}
                 <!--detail is the name or path removing hardcore url // music:detail-->
                 <a href="{% url 'music:detail' album.id %}"> 
                     {{album.alum_title}}<br/>
