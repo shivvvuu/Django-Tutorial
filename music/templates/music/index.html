@@ -3,7 +3,8 @@
     <ul>
         <li>
             {% for album in all_album %}
-                <a href="/music/{{album.id}}">
+                <!--detail is the name or path removing hardcore url -->
+                <a href="{% url 'detail' album.id %}"> 
                     {{album.alum_title}}<br/>
                 </a>
             {% endfor %}
