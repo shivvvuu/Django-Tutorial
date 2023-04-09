@@ -7,6 +7,9 @@ urlpatterns = [
     # /music/
     path('', views.IndexView.as_view(), name='index'),
     
+    # /music/
+    re_path(r'^register/$', views.UserFormView.as_view(), name='register'),
+    
     # /music/<album_id>/ adding re_path for regular expression
     re_path(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
     
